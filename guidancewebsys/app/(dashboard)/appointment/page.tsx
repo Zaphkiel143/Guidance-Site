@@ -1,5 +1,5 @@
-import React from 'react';
 import { Plus, Search, Filter, MoreVertical } from 'lucide-react';
+import { appointments, statusStyles } from '../../../student_data';
 
 export default function AppointmentsPage() {
   return (
@@ -54,17 +54,23 @@ export default function AppointmentsPage() {
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-50">
-            <tr className="hover:bg-slate-50 transition-colors">
-              <td className="px-6 py-4 font-medium text-slate-900">John Patrick Doe</td>
-              <td className="px-6 py-4 text-slate-600">Apr 30, 2026 • 10:00 AM</td>
-              <td className="px-6 py-4 text-slate-600">Career Guidance</td>
-              <td className="px-6 py-4">
-                <span className="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs font-bold uppercase tracking-tight">Pending</span>
-              </td>
-              <td className="px-6 py-4">
-                <button className="text-slate-400 hover:text-blue-600"><MoreVertical size={20}/></button>
-              </td>
-            </tr>
+            {appointments.map((appointment) => (
+              <tr key={appointment.id} className="hover:bg-slate-50 transition-colors">
+                <td className="px-6 py-4 font-medium text-slate-900">{appointment.name}</td>
+                <td className="px-6 py-4 text-slate-600">{appointment.date}</td>
+                <td className="px-6 py-4 text-slate-600">{appointment.type}</td>
+                <td className="px-6 py-4">
+                  <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-tight ${statusStyles[appointment.status]}`}>
+                    {appointment.status}
+                  </span>
+                </td>
+                <td className="px-6 py-4">
+                  <button className="text-slate-400 hover:text-blue-600">
+                    <MoreVertical size={20} />
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

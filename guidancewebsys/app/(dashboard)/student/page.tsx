@@ -1,20 +1,7 @@
-import { Eye, Edit2 } from 'lucide-react'; // Optional icons
+import { Eye, Edit2 } from 'lucide-react';
+import { students, getStatusColor } from '../../../student_data'; 
 
 const StudentList = () => {
-  const students = [
-    { id: '2024-0001', name: 'Alice Johnson', status: 'Active', lastVisit: '2026-04-20', email: 'alice.j@school.edu' },
-    { id: '2024-0042', name: 'Marcus Chen', status: 'Pending', lastVisit: '2026-04-15', email: 'm.chen@school.edu' },
-    { id: '2023-0812', name: 'Sarah Miller', status: 'Resolved', lastVisit: '2026-03-28', email: 'smiller@school.edu' },
-  ];
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'Active': return 'bg-green-100 text-green-700 border-green-200';
-      case 'Pending': return 'bg-yellow-100 text-yellow-700 border-yellow-200';
-      case 'Resolved': return 'bg-blue-100 text-blue-700 border-blue-200';
-      default: return 'bg-gray-100 text-gray-700 border-gray-200';
-    }
-  };
 
   return (
     <div className="w-full bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
