@@ -23,6 +23,10 @@ children,
 }: Readonly<{
 children: React.ReactNode;
 }>) {
+    function handleChatToggle(): void {
+        throw new Error("Function not implemented.");
+    }
+
 return (
     <html
     lang="en"

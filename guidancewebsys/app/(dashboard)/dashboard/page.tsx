@@ -1,8 +1,16 @@
+"use client";
+
+import { students,getStatusColor } from '../../../student_data';
+import { useState } from 'react';
 
 
-import { students,getStatusColor } from '../../../student_data'; 
- 
-export default function Home() {
+export default function Home() {    
+    const [query, setQuery] = useState<string>("");
+
+    const filteredStudents = students.filter((student) =>
+        student.name.toLowerCase().includes(query.toLowerCase()) ||
+        student.status.toLowerCase().includes(query.toLowerCase())
+    );
 return (
     <main>
         <div className="bg-gray-50 font-sans text-gray-900">
@@ -31,11 +39,8 @@ return (
 
                 <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
                 <div className="p-4 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
-                    <input type="text" id="searchInput" placeholder="Search students..." className="border rounded-lg px-4 py-2 w-72 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-                    <div className="space-x-2">
-                        <button className="px-3 py-1 border rounded text-sm hover:bg-white transition">Filter</button>
-                        <button className="px-3 py-1 border rounded text-sm hover:bg-white transition">Export</button>
-                    </div>
+                    <input type="text" id="searchInput" placeholder="Search students..." value={query} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value) }className="border rounded-lg px-4 py-2 w-72 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+
                     
                 </div>
                 <div className="overflow-x-auto">
@@ -46,13 +51,13 @@ return (
                             <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">ID Number</th>
                             <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Status</th>
                             <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Last Visit</th>
-                            <th className="px-6 py-4 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">Actions</th>
                         </tr>
                         </thead>
                         
                         <tbody className="divide-y divide-gray-50">
-                        {students.map((student) => (
+                        {filteredStudents.map((student) => (
                             <tr key={student.id} className="hover:bg-blue-50/30 transition-colors group">
+                                {/**/}
                             <td className="px-6 py-4">
                                 <div className="flex flex-col">
                                 <span className="text-sm font-medium text-gray-900">{student.name}</span>

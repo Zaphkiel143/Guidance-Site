@@ -1,12 +1,19 @@
-import { Plus, Search, Filter, MoreVertical } from 'lucide-react';
+"use client";
+
+import { Plus, Search, Filter } from 'lucide-react';
 import { appointments, statusStyles } from '../../../student_data';
+import NewAppointmentModal from './AppointmentModal';
+import { useState } from 'react';
 
 export default function AppointmentsPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+
   return (
     <div className="p-8 bg-[#F8FAFC] min-h-screen font-sans">
       <h1 className="text-2xl font-bold text-slate-800 mb-6">Appointment Management</h1>
-
-      {/* Summary Cards */}
+      
+      {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <div className="bg-white p-6 rounded-xl shadow-sm border-l-4 border-blue-600">
           <p className="text-slate-500 text-sm font-semibold uppercase tracking-wider">Todays Sessions</p>
@@ -30,16 +37,19 @@ export default function AppointmentsPage() {
             <input 
               type="text" 
               placeholder="Search appointments..." 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
             />
           </div>
           <div className="flex gap-2">
-            <button className="flex items-center gap-2 px-4 py-2 border border-slate-200 rounded-lg text-slate-600 hover:bg-slate-50 font-medium">
-              <Filter size={18} /> Filter
-            </button>
-            <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium transition-colors">
+            <button onClick={() => setIsModalOpen(true)} className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium transition-colors">
               <Plus size={18} /> New Appointment
             </button>
+            <NewAppointmentModal 
+                isOpen={isModalOpen} 
+                onClose={() => setIsModalOpen(false)} 
+            />
           </div>
         </div>
 
@@ -50,11 +60,14 @@ export default function AppointmentsPage() {
               <th className="px-6 py-4 font-semibold">Date & Time</th>
               <th className="px-6 py-4 font-semibold">Type</th>
               <th className="px-6 py-4 font-semibold">Status</th>
-              <th className="px-6 py-4 font-semibold">Actions</th>
+              {/* REMOVED: Actions header */}
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-50">
-            {appointments.map((appointment) => (
+            {appointments.filter((appointment) => 
+              appointment.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+              appointment.date.includes(searchQuery)
+            ).map((appointment) => (
               <tr key={appointment.id} className="hover:bg-slate-50 transition-colors">
                 <td className="px-6 py-4 font-medium text-slate-900">{appointment.name}</td>
                 <td className="px-6 py-4 text-slate-600">{appointment.date}</td>
@@ -64,11 +77,7 @@ export default function AppointmentsPage() {
                     {appointment.status}
                   </span>
                 </td>
-                <td className="px-6 py-4">
-                  <button className="text-slate-400 hover:text-blue-600">
-                    <MoreVertical size={20} />
-                  </button>
-                </td>
+                {/* REMOVED: Actions cell and kebab menu logic */}
               </tr>
             ))}
           </tbody>
