@@ -1,14 +1,10 @@
-import React from 'react';
 import { FileText, Download, TrendingUp, Users, AlertCircle } from 'lucide-react';
 
 export default function ReportsPage() {
   return (
     <div className="p-8 bg-[#F8FAFC] min-h-screen">
       <h1 className="text-2xl font-bold text-slate-800 mb-6">Generated Reports</h1>
-
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        
-        {/* Report Generation Section */}
         <div className="space-y-6">
           <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
             <h2 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
@@ -31,7 +27,6 @@ export default function ReportsPage() {
               </div>
             </div>
           </div>
-
           <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
             <h2 className="text-lg font-bold text-slate-800 mb-4">Generate New Report</h2>
             <div className="grid grid-cols-2 gap-4">
@@ -44,8 +39,6 @@ export default function ReportsPage() {
             </div>
           </div>
         </div>
-
-        {/* Recent Downloads List */}
         <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
           <h2 className="text-lg font-bold text-slate-800 mb-4">Recent Documents</h2>
           <div className="divide-y divide-slate-100">
@@ -71,7 +64,6 @@ export default function ReportsPage() {
             ))}
           </div>
         </div>
-
       </div>
     </div>
   );

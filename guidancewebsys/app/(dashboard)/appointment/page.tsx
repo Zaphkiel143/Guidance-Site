@@ -1,6 +1,6 @@
 "use client";
 
-import { Plus, Search, Filter } from 'lucide-react';
+import { Plus, Search} from 'lucide-react';
 import { appointments, statusStyles } from '../../../student_data';
 import NewAppointmentModal from './AppointmentModal';
 import { useState } from 'react';
@@ -13,7 +13,6 @@ export default function AppointmentsPage() {
     <div className="p-8 bg-[#F8FAFC] min-h-screen font-sans">
       <h1 className="text-2xl font-bold text-slate-800 mb-6">Appointment Management</h1>
       
-      {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <div className="bg-white p-6 rounded-xl shadow-sm border-l-4 border-blue-600">
           <p className="text-slate-500 text-sm font-semibold uppercase tracking-wider">Todays Sessions</p>
@@ -29,7 +28,6 @@ export default function AppointmentsPage() {
         </div>
       </div>
 
-      {/* Data Table Section */}
       <div className="bg-white rounded-xl shadow-sm border border-slate-100">
         <div className="p-6 flex flex-col md:flex-row justify-between gap-4 border-b border-slate-50">
           <div className="relative flex-1 max-w-md">
@@ -60,7 +58,6 @@ export default function AppointmentsPage() {
               <th className="px-6 py-4 font-semibold">Date & Time</th>
               <th className="px-6 py-4 font-semibold">Type</th>
               <th className="px-6 py-4 font-semibold">Status</th>
-              {/* REMOVED: Actions header */}
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-50">
@@ -77,7 +74,6 @@ export default function AppointmentsPage() {
                     {appointment.status}
                   </span>
                 </td>
-                {/* REMOVED: Actions cell and kebab menu logic */}
               </tr>
             ))}
           </tbody>

@@ -9,13 +9,11 @@ const MessagesPage = () => {
 
   return (
     <div className="p-8 bg-gray-50 min-h-screen font-sans text-gray-900">
-      {/* 1. Header Section */}
       <header className="mb-8">
         <h1 className="text-2xl font-bold text-[#1e3a8a]">Student Messages</h1>
         <p className="text-gray-500">Respond to student inquiries and questions</p>
       </header>
 
-      {/* 2. Top Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <StatCard icon={<MessageSquare />} label="Total Messages" value="5" color="bg-[ffffff]" textColor="text-[#1e1b4b]"  />
         <StatCard icon={<User />} label="Unread Messages" value="2" color="bg-[ffffff]" textColor="text-[#1e1b4b]" />
@@ -23,7 +21,6 @@ const MessagesPage = () => {
       </div>
 
       <div className="grid grid-cols-12 gap-6 h-150">
-
         <div className="col-span-4 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col overflow-hidden">
           <div className="p-4 space-y-4 border-b">
             <div className="relative">
@@ -38,15 +35,12 @@ const MessagesPage = () => {
               <Filter size={14} /> Show All
             </button>
           </div>
-
           <div className="flex-1 overflow-y-auto custom-scrollbar">
             <MessageItem name="Marcus Johnson" date="Mar 17" text="How do I request a transcript?" active={activeChat === 'Marcus Johnson'} onClick={setActiveChat} />
             <MessageItem name="Sarah Williams" date="Mar 17" text="Thank you for your help with my college applications!" active={activeChat === 'Sarah Williams'} onClick={setActiveChat} isReplied />
             <MessageItem name="David Rodriguez" date="Mar 17" text="What documents do I need for college applications?" hasUnread active={activeChat === 'David Rodriguez'} onClick={setActiveChat} />
           </div>
         </div>
-
-        {/* Right Column: Chat Window */}
         <div className="col-span-8 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col overflow-hidden">
           {/* Chat Header */}
           <div className="p-4 border-b flex items-center gap-4">
@@ -56,8 +50,6 @@ const MessagesPage = () => {
               <p className="text-xs text-gray-400">sarah.w@school.edu</p>
             </div>
           </div>
-
-          {/* Chat Bubble Area */}
           <div className="flex-1 p-6 space-y-6 overflow-y-auto bg-gray-50/30">
             <div className="flex gap-3 max-w-[80%]">
               <div className="w-8 h-8 bg-[#fbbf24] rounded-full shrink-0" />
@@ -66,7 +58,6 @@ const MessagesPage = () => {
                 <span className="text-[10px] text-gray-400 mt-2 block">10:00 AM</span>
               </div>
             </div>
-
             <div className="flex gap-3 max-w-[80%] ml-auto flex-row-reverse">
               <div className="w-8 h-8 bg-[#2563eb] rounded-full shrink-0" />
               <div className="p-4 bg-[#fbbf24] text-[#1e1b4b] rounded-2xl rounded-tr-none shadow-sm">
@@ -75,8 +66,6 @@ const MessagesPage = () => {
               </div>
             </div>
           </div>
-
-
           <div className="p-4 border-t">
             <div className="flex gap-2">
               <input 
@@ -90,7 +79,6 @@ const MessagesPage = () => {
             </div>
           </div>
         </div>
-
       </div>
     </div>
   );
@@ -113,7 +101,6 @@ const StatCard = ({
 }: StatCardProps) => (
   <div className={`${color} ${textColor} p-6 rounded-2xl shadow-lg transition-transform hover:scale-[1.02]`}>
     <div className="mb-4 opacity-80">
-      {/* We use React.isValidElement to safely clone the icon */}
       {React.isValidElement(icon) ? React.cloneElement(icon as React.ReactElement<LucideProps>, { size: 28 }) : icon}
     </div>
     <div className="text-4xl font-bold mb-1">{value}</div>

@@ -1,3 +1,9 @@
+"user client";
+
+import { useState } from "react";
+import StudentList from "./app/(dashboard)/student/page";
+import AppointmentModal from "./app/(dashboard)/appointment/AppointmentModal";
+
 
 export const students = [
     { id: '2024-0001', name: 'Alice Johnson', status: 'Active', lastVisit: '2026-04-20', email: 'alice.j@school.edu' },
@@ -8,7 +14,7 @@ export const students = [
     { id: '2023-0815', name: 'Shane Doe', status: 'Active', lastVisit: '2026-04-26', email: 'shane.d@school.edu' },
     { id: '2023-0816', name: 'Alex Johnson', status: 'Active', lastVisit: '2026-04-27', email: 'alex.j@school.edu' },
     { id: '2023-0817', name: 'Jamie Smith', status: 'Pending', lastVisit: '2026-04-27', email: 'jamie.s@school.edu' },
-  ];
+];
 
 export const getStatusColor = (status: string) => {
     switch (status) {
@@ -17,7 +23,7 @@ export const getStatusColor = (status: string) => {
       case 'Resolved': return 'bg-blue-100 text-blue-700 border-blue-200';
       default: return 'bg-gray-100 text-gray-700 border-gray-200';
     }
-  };
+};
 export const statusStyles: Record<string, string> = {
   Pending:  "bg-yellow-100 text-yellow-700",
   Completed: "bg-green-100  text-green-700",
@@ -31,3 +37,38 @@ export const appointments = [
   { name: 'Sophia Davis', date: 'May 1, 2026 • 2:00 PM', type: 'Career Guidance', status: 'Completed', id: '4', lastvisit: '2026-04-23' },
   { name: 'David Kim', date: 'May 2, 2026 • 10:30 AM', type: 'Academic Counseling', status: 'Rejected', id: '5', lastvisit: '2026-04-24' },
 ];
+{/*
+interface AppointmentData {
+  name: string;
+  date: string;
+  type: string;
+  status: string;
+  id: string;
+  lastvisit: string;
+}
+interface AppointmentModalProps {
+  onConfirm: (newStudent: AppointmentData) => void;
+  onClose: () => void;
+}
+
+export function StudentRecord() {
+  const [studentList, setStudentList] = useState<AppointmentData[]>(appointments);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const addNewAppointment = (newStudent: AppointmentData) => {
+    setStudentList((prev) => [newStudent, ...prev]); 
+    setIsModalOpen(false); 
+  };
+
+return (
+  <>
+    <StudentList data={studentList} />
+    {isModalOpen && (
+      <AppointmentModal 
+        onConfirm={addNewAppointment} 
+        onClose={() => setIsModalOpen(false)} 
+      />
+    )}
+  </>
+);
+}*/}
